@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Install packages
+yum install httpd php git -y
+
+# Start and enable Apache (missing in your script)
+systemctl start httpd
+systemctl enable httpd
+
+# Set hostname
+hostnamectl set-hostname shopping-website-ap-south-1b
+
+# Clone your repo (your wget line is wrong, wget downloads a file, not a git repo)
+git clone https://github.com/pavanaiprofessional-svg/AWS-LB-website.git website
+
+# Copy files to Apache root
+cp -r website/2137_barista_cafe/* /var/www/html/
+
+# Fix ownership (you used chmod incorrectly, should be chown)
+chown -R apache:apache /var/www/html/*
+
