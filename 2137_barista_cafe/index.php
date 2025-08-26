@@ -24,7 +24,12 @@
     <body>
         <!-- Hostname Banner -->
         <div id="server-hostname" class="alert alert-dark text-center mb-0 py-2" style="border-radius:0;">
-            Server Hostname: <?php echo gethostname(); ?>
+            <?php
+                // Capture server hostname
+                $output = shell_exec('echo $HOSTNAME');
+                echo "<h1><center><pre>$output</pre></center></h1>";
+                echo "<h1><center>Shopping Application Version</center></h1>";
+            ?>
         </div>
                 
         <main>
